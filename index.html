@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sketch</title>
+
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden; /* 隱藏滾動條，讓畫布填滿視窗 */
+      }
+
+      /* 遊戲開始畫面的樣式 */
+      #start-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6); /* 背景稍微加深 */
+        backdrop-filter: blur(5px); /* 背景模糊效果 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        cursor: pointer; /* 讓滑鼠游標變成手指形狀，提示可點擊 */
+      }
+
+      /* 說明卡片樣式 */
+      .info-card {
+        background: linear-gradient(135deg, #2b5876 0%, #4e4376 100%); /* 深藍紫色漸層背景 */
+        padding: 40px;
+        border-radius: 20px;
+        border: 4px solid #fff; /* 白色邊框 */
+        box-shadow: 0 10px 25px rgba(0,0,0,0.5); /* 陰影效果 */
+        color: white;
+        font-family: 'Microsoft JhengHei', sans-serif;
+        text-align: center;
+        max-width: 500px;
+        width: 90%;
+        animation: fadeIn 0.5s ease-out;
+      }
+
+      .info-card h1 {
+        margin-top: 0;
+        color: #ffcc00; /* 標題黃色 */
+        text-shadow: 2px 2px 0px #333;
+        font-size: 2em;
+        margin-bottom: 20px;
+      }
+
+      .info-card ul {
+        text-align: left;
+        display: inline-block;
+        font-size: 1.2em;
+        margin: 10px 0;
+        line-height: 1.8;
+      }
+
+      .start-hint {
+        margin-top: 25px;
+        font-size: 1.2em;
+        font-weight: bold;
+        color: #89f7fe;
+        animation: pulse 1.5s infinite;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.8); }
+        to { opacity: 1; transform: scale(1); }
+      }
+
+      @keyframes pulse {
+        0% { opacity: 0.6; }
+        50% { opacity: 1; }
+        100% { opacity: 0.6; }
+      }
+    </style>
+
+    <!-- 改為使用 CDN 載入 p5.js 函式庫 -->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+
+    <!-- 加入 p5.sound 音效函式庫的 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/addons/p5.sound.min.js"></script>
+  </head>
+
+  <body>
+    <!-- 遊戲開始前的說明視窗 -->
+    <div id="start-screen">
+      <div class="info-card">
+        <h1>🦊 動物方程式 🐰<br>遊戲說明</h1>
+        <h3 style="color: #ffd700; margin: 0 0 15px 0;">🎯 目標：答對三題 ➡️ 往右尋找蓋瑞</h3>
+        <ul style="list-style: none; padding: 0;">
+          <li>⬅️ ➡️ 方向鍵 : 左右移動</li>
+          <li>⬆️ 方向鍵 : 跳躍 (可二段跳)</li>
+          <li>⬇️ 方向鍵 : 找羊求救 (提示)</li>
+          <li>⇧ Shift : 按住加速</li>
+          <li>↵ Enter : 確認答案</li>
+        </ul>
+        <div class="start-hint">>> 點擊畫面開始遊戲 <<</div>
+      </div>
+    </div>
+
+    <!-- 載入您的 sketch.js 腳本 -->
+    <script src="sketch.js"></script>
+
+    <script>
+      // 監聽點擊事件：點擊說明視窗後將其隱藏
+      document.getElementById('start-screen').addEventListener('click', function() {
+        this.style.display = 'none';
+        // 如果需要在 sketch.js 中控制遊戲邏輯（例如暫停/開始），您可以在這裡設定一個變數，如 window.isGameStarted = true;
+      });
+    </script>
+  </body>
+</html>
